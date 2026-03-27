@@ -11,7 +11,6 @@
 #include "../devices/IKeyboard.hpp"
 #include "../desktop/view/LayerSurface.hpp"
 #include "../managers/input/InputManager.hpp"
-#include "../managers/HookSystemManager.hpp"
 #include "wlr-layer-shell-unstable-v1.hpp"
 #include <algorithm>
 #include <hyprutils/utils/ScopeGuard.hpp>
@@ -668,7 +667,7 @@ void CSeatManager::setGrab(SP<CSeatGrab> grab) {
 
                 // If this was a popup grab, focus its parent window to maintain context
                 if (validMapped(parentWindow)) {
-                    Desktop::focusState()->rawWindowFocus(parentWindow);
+                    Desktop::focusState()->rawWindowFocus(parentWindow, Desktop::FOCUS_REASON_FFM);
                     Log::logger->log(Log::DEBUG, "[seatmgr] Refocused popup parent window {} (follow_mouse={})", parentWindow->m_title, *PFOLLOWMOUSE);
                 } else
                     g_pInputManager->refocusLastWindow(PMONITOR);
@@ -702,7 +701,7 @@ void CSeatManager::setGrab(SP<CSeatGrab> grab) {
             auto candidate = Desktop::focusState()->window();
 
             if (candidate)
-                Desktop::focusState()->rawWindowFocus(candidate);
+                Desktop::focusState()->rawWindowFocus(candidate, Desktop::FOCUS_REASON_FFM);
         }
 
         if (oldGrab->m_onEnd)

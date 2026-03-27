@@ -3,8 +3,7 @@
 #include "../../defines.hpp"
 #include "PassElement.hpp"
 
-class CGradientValueData;
-class CTexture;
+class ITexture;
 
 class CRenderPass {
   public:
@@ -36,7 +35,7 @@ class CRenderPass {
 
     struct {
         bool         present = false;
-        SP<CTexture> keyboardFocusText, pointerFocusText, lastWindowText;
+        SP<ITexture> keyboardFocusText, pointerFocusText, lastWindowText;
     } m_debugData;
 
     friend class CHyprOpenGLImpl;

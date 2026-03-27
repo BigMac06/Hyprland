@@ -11,12 +11,15 @@ class CHyprError {
     CHyprError();
     ~CHyprError() = default;
 
-    void  queueCreate(std::string message, const CHyprColor& color);
-    void  draw();
-    void  destroy();
+    void         queueCreate(std::string message, const CHyprColor& color);
+    void         queueError(std::string err);
+    void         draw();
+    void         destroy();
 
-    bool  active();
-    float height(); // logical
+    bool         active();
+    float        height(); // logical
+
+    SP<ITexture> texture();
 
   private:
     void              createQueued();
@@ -24,7 +27,7 @@ class CHyprError {
     CHyprColor        m_queuedColor;
     bool              m_queuedDestroy = false;
     bool              m_isCreated     = false;
-    SP<CTexture>      m_texture;
+    SP<ITexture>      m_texture;
     PHLANIMVAR<float> m_fadeOpacity;
     CBox              m_damageBox  = {0, 0, 0, 0};
     float             m_lastHeight = 0.F;
