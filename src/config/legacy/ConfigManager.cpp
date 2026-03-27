@@ -1752,7 +1752,7 @@ std::optional<std::string> CConfigManager::handleAnimation(const std::string& co
 
     std::string bezierName = ARGS[3];
 
-    if (!g_pAnimationManager->bezierExists(bezierName))
+    if (!g_pAnimationManager->isBezierNameValid(bezierName))
         return "no such bezier";
 
     Config::animationTree()->setConfigForNode(ANIMNAME, enabledInt, speed, ARGS[3], ARGS[4]);

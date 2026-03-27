@@ -1411,7 +1411,7 @@ void IHyprRenderer::renderAllClientsForWorkspace(PHLMONITOR pMonitor, PHLWORKSPA
 
     // and then special
     if UNLIKELY (pMonitor->m_specialFade->value() != 0.F) {
-        const auto SPECIALANIMPROGRS = pMonitor->m_specialFade->getCurveValue();
+        const auto SPECIALANIMPROGRS = g_pAnimationManager->getCurveValueFor(*pMonitor->m_specialFade);
         const bool ANIMOUT           = !pMonitor->m_activeSpecialWorkspace;
 
         if (*PDIMSPECIAL != 0.f) {
